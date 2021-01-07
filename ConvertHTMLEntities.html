@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+            function convertHTML(str) {
+                let htmlObject = {'&': "&amp;", "<": "&lt;", ">": "&gt;", '"' : "&quot;", "'":"&apos;"} //Object of a list of html entities
+                let htmlKeys = Object.keys(htmlObject); //Array of the keys in the htmlObject object
+                //console.log(htmlObject["&"]);//console.log(htmlKeys.length);//console.log(htmlKeys);
+                let regex1 = /[&<>""""'"]/g;   // /[^A-Za-z" "]/g;
+                let htmlEntArray = str.match(regex1); //The output array is ["char", index: i, input: string, groups: undefined]
+                
+                console.log(htmlEntArray); 
+                if(htmlEntArray !== null)
+                {
+                    if(htmlEntArray.length !==0)
+                    {
+                        for(let i = 0; i < htmlEntArray.length; i++)
+                        {
+                        //console.log(i + "-" + htmlObject[htmlEntArray[i]]);
+                        let str1 = str.replace(htmlEntArray[i], htmlObject[htmlEntArray[i]]);
+                        str = str1;
+                        }
+                    }
+                }                            
+                
+                return str;
+                }
+                //console.log(convertHTML("Dolce & Gabbana"));
+                //convertHTML("Dolce & Gabbana");
+                //convertHTML("Hamburgers < Pizza < Tacos");
+                //console.log(convertHTML("Hamburgers < Pizza < Tacos"));
+                console.log(convertHTML('Stuff in "quotation marks"'));
+                console.log(convertHTML("abc"));
+
+
+        </script>
+    </body>
+</html>
